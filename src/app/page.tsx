@@ -1,95 +1,39 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Container from '@/components/container';
+import Heading from '@/components/heading';
+import Section from '@/components/section';
+import Text from '@/components/text';
+import { boomerang } from './common/constants';
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <Section padding='sm'>
+      <Container>
+        <Heading className={`${boomerang.className}`} tag="h1" fontClass="display1">
+          Fossy Reviews
+        </Heading>
+        <Section padding='sm'>
+          <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet
+          sapien mollis, convallis lectus ut, porta ipsum. Sed in turpis at eros
+          cursus commodo. Ut suscipit odio quis sagittis pellentesque. Quisque
+          non ipsum ac nibh aliquam euismod. Morbi tristique odio est, id
+          sodales velit pulvinar vel. Sed malesuada vehicula massa et posuere.
+          Donec vitae mauris mi. Fusce tortor mauris, tristique eget tempus sed,
+          sodales eu tellus. Donec molestie lorem lorem, sed ultricies augue
+          commodo ut. Praesent non fringilla nunc. In hac habitasse platea
+          dictumst. Donec pulvinar tincidunt arcu at scelerisque. Quisque at sem
+          eleifend, bibendum tellus a, convallis ex. Sed et scelerisque justo.
+          Aenean a luctus arcu. Maecenas sit amet nisi ut augue vulputate mattis
+          sit amet sit amet enim. Ut accumsan odio quis massa bibendum faucibus.
+          Vestibulum varius odio ultrices, aliquet lacus ut, tincidunt justo.
+          Etiam vel porttitor ante. Cras rutrum erat id commodo varius. Sed non
+          orci tincidunt, sodales magna a, laoreet felis. Fusce non tempus enim.
+          Donec pulvinar turpis felis, sit amet gravida tortor dictum in.
+        </Text>
+        </Section>
+      </Container>
+    </Section>
   );
-}
+};
+
+export default Home;
