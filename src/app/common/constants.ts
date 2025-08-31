@@ -1,10 +1,10 @@
-import localFont from "next/font/local";
+import localFont from 'next/font/local';
 
 export const boomerang = localFont({
-  src: [
-    {
-      path: '../../fonts/Boomerang.ttf',
-    },
-  ],
-  variable: '--font-boomerang',
+    src: [
+        {
+            path: '../../fonts/Boomerang.ttf',
+        },
+    ],
+    variable: '--font-boomerang',
 });

@@ -1,9 +1,10 @@
-@import "@/lib/css/index.css";
+@import '@/lib/css/index.css';
 
 body {
-  font-family: var(--font-geist-sans), sans-serif;
+    font-family: var(--font-geist-sans), sans-serif;
 }
 
-code, pre {
-  font-family: var(--font-geist-mono), monospace;
+code,
+pre {
+    font-family: var(--font-geist-mono), monospace;
 }

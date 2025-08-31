@@ -1,12 +1,10 @@
 import Button from '@/components/button';
 
 interface INavBarButtonProps {
-  color?: LkColorWithOnToken;
-  label: string;
+    color?: LkColorWithOnToken;
+    label: string;
+    onClick?: () => void;
 }
-export const NavBarButton = ({
-  color = 'primary',
-  label,
-}: INavBarButtonProps) => {
-  return <Button label={label} variant="text" color={color} size='lg' />;
+export const NavBarButton = ({ color = 'primary', label, onClick }: INavBarButtonProps) => {
+    return <Button label={label} variant="text" color={color} size="lg" onClick={onClick} />;
 };
