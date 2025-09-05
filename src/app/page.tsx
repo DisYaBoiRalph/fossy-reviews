@@ -7,7 +7,7 @@ import Text from "@/components/text";
 
 const Home = () => {
     return (
-        <Section className="p-lg">
+        <Section>
             <Container>
                 <Heading className={`${boomerang.className}`} tag="h1" fontClass="display1">
                     Fossy Reviews

@@ -33,7 +33,7 @@ export default function RootLayout({
             <ThemeProvider>
                 <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                     <Header />
-                    {children}
+                    <div className="p-lg">{children}</div>
                     <Footer />
                 </body>
             </ThemeProvider>
