@@ -4,7 +4,7 @@ import Button from "@/components/button";
 import Container from "@/components/container";
 import NavBar from "@/components/navbar";
 import Section from "@/components/section";
-import { NavBarButton } from "./buttons/NavBarButton";
+import { NavBarButton } from "../buttons/NavBarButton";
 import { useRouter } from "next/navigation";
 import IconButton from "@/components/icon-button";
 

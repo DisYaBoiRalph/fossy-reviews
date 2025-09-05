@@ -5,6 +5,13 @@
 
 import type { Config } from "jest";
 
+const nextJest = require("next/jest");
+
+const createJestConfig = nextJest({
+    // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+    dir: "./",
+});
+
 const config: Config = {
     // All imported modules in your tests should be mocked automatically
     // automock: false,
@@ -13,7 +20,7 @@ const config: Config = {
     // bail: 0,
 
     // The directory where Jest should store its cached dependency information
-    // cacheDirectory: "C:\\Users\\Raeemax\\AppData\\Local\\Temp\\jest",
+    // cacheDirectory: "C:\\Users\\Ray Vincent Danque\\AppData\\Local\\Temp\\jest",
 
     // Automatically clear mock calls, instances, contexts and results before every test
     clearMocks: true,
@@ -22,7 +29,15 @@ const config: Config = {
     collectCoverage: true,
 
     // An array of glob patterns indicating a set of files for which coverage information should be collected
-    // collectCoverageFrom: undefined,
+    collectCoverageFrom: [
+        "src/custom_components/**/*.{js,jsx,ts,tsx}",
+        "src/app/**/*.{js,jsx,ts,tsx}",
+        "!src/components/**",
+        "!src/lib/**",
+        "!**/*.d.ts",
+        "!**/index.ts",
+        "!**/node_modules/**",
+    ],
 
     // The directory where Jest should output its coverage files
     coverageDirectory: "coverage",
@@ -78,22 +93,13 @@ const config: Config = {
     // ],
 
     // An array of file extensions your modules use
-    // moduleFileExtensions: [
-    //   "js",
-    //   "mjs",
-    //   "cjs",
-    //   "jsx",
-    //   "ts",
-    //   "mts",
-    //   "cts",
-    //   "tsx",
-    //   "json",
-    //   "node"
-    // ],
+    moduleFileExtensions: ["js", "mjs", "cjs", "jsx", "ts", "mts", "cts", "tsx", "json", "node"],
 
     // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-    // moduleNameMapper: {},
-
+    moduleNameMapper: {
+        "^@/(.*)$": "<rootDir>/src/$1",
+        "^lucide-react/dynamic$": "<rootDir>/src/__mocks__/lucide-react-dynamic.js",
+    },
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
     // modulePathIgnorePatterns: [],
 
@@ -139,7 +145,7 @@ const config: Config = {
     // setupFiles: [],
 
     // A list of paths to modules that run some code to configure or set up the testing framework before each test
-    // setupFilesAfterEnv: [],
+    setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 
     // The number of seconds after which a test is considered as slow and reported as such in the results.
     // slowTestThreshold: 5,
@@ -163,9 +169,7 @@ const config: Config = {
     // ],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-    // testPathIgnorePatterns: [
-    //   "\\\\node_modules\\\\"
-    // ],
+    testPathIgnorePatterns: ["\\\\node_modules\\\\", "src/components", "src/lib"],
 
     // The regexp pattern or array of patterns that Jest uses to detect test files
     // testRegex: [],
@@ -177,13 +181,12 @@ const config: Config = {
     // testRunner: "jest-circus/runner",
 
     // A map from regular expressions to paths to transformers
-    // transform: undefined,
+    transform: {
+        "^.+\\.(js|jsx|ts|tsx|mjs)$": "babel-jest", // 👈 include mjs
+    },
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-    // transformIgnorePatterns: [
-    //   "\\\\node_modules\\\\",
-    //   "\\.pnp\\.[^\\\\]+$"
-    // ],
+    transformIgnorePatterns: ["node_modules/(?!(lucide-react).*)$"],
 
     // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
     // unmockedModulePathPatterns: undefined,
@@ -198,4 +201,4 @@ const config: Config = {
     // watchman: true,
 };
 
-export default config;
+module.exports = createJestConfig(config);

@@ -1,0 +1,93 @@
+import { render, screen } from "@testing-library/react";
+import About from "./page";
+
+// Mock LiftKit components
+jest.mock("@/components/container", () => ({
+    __esModule: true,
+    default: ({ children, ...props }: any) => (
+        <div data-testid="container" {...props}>
+            {children}
+        </div>
+    ),
+}));
+
+jest.mock("@/components/heading", () => ({
+    __esModule: true,
+    default: ({ children, tag, fontClass, ...props }: any) => {
+        const Tag = tag || "h1";
+        return (
+            <Tag data-testid="heading" {...props}>
+                {children}
+            </Tag>
+        );
+    },
+}));
+
+jest.mock("@/components/section", () => ({
+    __esModule: true,
+    default: ({ children, padding, ...props }: any) => (
+        <section data-testid="section" data-padding={padding} {...props}>
+            {children}
+        </section>
+    ),
+}));
+
+jest.mock("@/components/text", () => ({
+    __esModule: true,
+    default: ({ children, ...props }: any) => (
+        <p data-testid="text" {...props}>
+            {children}
+        </p>
+    ),
+}));
+
+// Mock constants
+jest.mock("@/common/constants", () => ({
+    boomerang: {
+        className: "boomerang-font",
+    },
+}));
+
+describe("About Page", () => {
+    it("renders the main heading", () => {
+        render(<About />);
+
+        expect(screen.getByText("About")).toBeInTheDocument();
+        expect(screen.getByTestId("heading")).toHaveClass("boomerang-font");
+    });
+
+    it("renders the about text", () => {
+        render(<About />);
+
+        expect(screen.getByText("This is an about page.")).toBeInTheDocument();
+    });
+
+    it("has correct structure with sections and containers", () => {
+        render(<About />);
+
+        const sections = screen.getAllByTestId("section");
+        const containers = screen.getAllByTestId("container");
+
+        expect(sections.length).toBeGreaterThan(0);
+        expect(containers.length).toBeGreaterThan(0);
+    });
+
+    it("applies correct padding to sections", () => {
+        render(<About />);
+
+        const sections = screen.getAllByTestId("section");
+        const mainSection = sections[0];
+        const textSection = sections[1];
+
+        expect(mainSection).toHaveAttribute("data-padding", "sm");
+        expect(textSection).toHaveAttribute("data-padding", "sm");
+    });
+
+    it("renders heading with correct tag and font class", () => {
+        render(<About />);
+
+        const heading = screen.getByTestId("heading");
+        expect(heading.tagName).toBe("H1");
+        expect(heading).toHaveClass("boomerang-font");
+    });
+});
