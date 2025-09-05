@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Button from '@/components/button';
-import Container from '@/components/container';
-import NavBar from '@/components/navbar';
-import Section from '@/components/section';
-import { NavBarButton } from './buttons/NavBarButton';
+import Button from "@/components/button";
+import Container from "@/components/container";
+import NavBar from "@/components/navbar";
+import Section from "@/components/section";
+import { NavBarButton } from "./buttons/NavBarButton";
 
 export const Header = () => {
     return (
@@ -16,7 +16,7 @@ export const Header = () => {
                         <NavBarButton
                             key="2"
                             label="Graph Tool"
-                            onClick={() => window.open('https://disyaboiralph.github.io/graph', '_blank')}
+                            onClick={() => window.open("https://disyaboiralph.github.io/graph", "_blank")}
                         />,
                     ]}
                     iconButtons={[
@@ -27,7 +27,7 @@ export const Header = () => {
                             label="YouTube"
                             size="lg"
                             color="error"
-                            onClick={() => window.open('https://www.youtube.com/@DisYaBoiRalph', '_blank')}
+                            onClick={() => window.open("https://www.youtube.com/@DisYaBoiRalph", "_blank")}
                         />,
                     ]}
                 />

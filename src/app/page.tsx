@@ -1,8 +1,8 @@
-import Container from '@/components/container';
-import Heading from '@/components/heading';
-import Section from '@/components/section';
-import Text from '@/components/text';
-import { boomerang } from './common/constants';
+import Container from "@/components/container";
+import Heading from "@/components/heading";
+import Section from "@/components/section";
+import Text from "@/components/text";
+import { boomerang } from "./common/constants";
 
 const Home = () => {
     return (

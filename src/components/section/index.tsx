@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
-import { propsToDataAttrs } from '@/lib/utilities';
-import '@/components/section/section.css';
+import { useMemo } from "react";
+import { propsToDataAttrs } from "@/lib/utilities";
+import "@/components/section/section.css";
 
-type SpacingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'none';
+type SpacingSize = "xs" | "sm" | "md" | "lg" | "xl" | "none";
 
 interface LkSectionProps extends React.HTMLAttributes<HTMLElement> {
     padding?: SpacingSize;
@@ -21,7 +21,7 @@ export default function Section(props: LkSectionProps) {
     const { container, children, padding, px, py, pt, pb, pl, pr, ...restProps } = props;
 
     const lkSectionAttrs = useMemo(
-        () => propsToDataAttrs({ container, children, padding, px, py, pt, pb, pl, pr }, 'section'),
+        () => propsToDataAttrs({ container, children, padding, px, py, pt, pb, pl, pr }, "section"),
         [container, children, padding, px, py, pt, pb, pl, pr],
     );
 

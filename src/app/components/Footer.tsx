@@ -1,5 +1,5 @@
-import Section from '@/components/section';
-import Text from '@/components/text';
+import Section from "@/components/section";
+import Text from "@/components/text";
 
 export const Footer = () => {
     return (
@@ -7,9 +7,9 @@ export const Footer = () => {
             className="border-t"
             padding="sm"
             style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
             }}
         >
             <Text>Footer Test Copyright lol</Text>

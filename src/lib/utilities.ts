@@ -3,9 +3,9 @@ export function propsToDataAttrs(props: Record<string, unknown>, baseAttr: strin
 
     Object.entries(props).forEach(([key, value]) => {
         // Only process serializable values
-        if (value === undefined || value === null || typeof value === 'function' || typeof value === 'object') return;
+        if (value === undefined || value === null || typeof value === "function" || typeof value === "object") return;
 
-        const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+        const kebabKey = key.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 
         dataAttrs[`data-lk-${baseAttr}-${kebabKey}`] = String(value);
     });

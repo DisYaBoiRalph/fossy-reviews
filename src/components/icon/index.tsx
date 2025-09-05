@@ -1,20 +1,20 @@
-import { DynamicIcon } from 'lucide-react/dynamic';
-import type { IconName } from 'lucide-react/dynamic';
-import '@/components/icon/icon.css';
+import { DynamicIcon } from "lucide-react/dynamic";
+import type { IconName } from "lucide-react/dynamic";
+import "@/components/icon/icon.css";
 
 export interface LkIconProps extends React.HTMLAttributes<HTMLElement> {
     name?: IconName;
     fontClass?: Exclude<LkFontClass, `${string}-bold` | `${string}-mono`>;
-    color?: LkColor | 'currentColor';
-    display?: 'block' | 'inline-block' | 'inline';
+    color?: LkColor | "currentColor";
+    display?: "block" | "inline-block" | "inline";
     strokeWidth?: number;
     opticShift?: boolean; //if true, pulls icon slightly upward
 }
 
 export default function Icon({
-    name = 'roller-coaster',
+    name = "roller-coaster",
     fontClass,
-    color = 'onsurface',
+    color = "onsurface",
     strokeWidth = 2,
     opticShift = false,
     ...restProps

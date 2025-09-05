@@ -1,21 +1,21 @@
-import { useMemo } from 'react';
-import { propsToDataAttrs } from '@/lib/utilities';
-import '@/components/column/column.css';
+import { useMemo } from "react";
+import { propsToDataAttrs } from "@/lib/utilities";
+import "@/components/column/column.css";
 
 interface LkColumnProps extends React.HTMLAttributes<HTMLDivElement> {
-    alignItems?: 'start' | 'center' | 'end' | 'stretch';
-    justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around';
-    gap?: LkSizeUnit | 'none';
+    alignItems?: "start" | "center" | "end" | "stretch";
+    justifyContent?: "start" | "center" | "end" | "space-between" | "space-around";
+    gap?: LkSizeUnit | "none";
     wrapChildren?: boolean;
-    defaultChildBehavior?: 'auto-grow' | 'auto-shrink' | 'ignoreFlexRules' | 'ignoreIntrinsicSize';
+    defaultChildBehavior?: "auto-grow" | "auto-shrink" | "ignoreFlexRules" | "ignoreIntrinsicSize";
     children?: React.ReactNode;
 }
 
 export default function Column(props: LkColumnProps) {
     const {
         children,
-        alignItems = 'stretch',
-        justifyContent = 'start',
+        alignItems = "stretch",
+        justifyContent = "start",
         gap,
         wrapChildren,
         defaultChildBehavior,
@@ -23,17 +23,7 @@ export default function Column(props: LkColumnProps) {
     } = props;
 
     const lkColumnAttrs = useMemo(
-        () =>
-            propsToDataAttrs(
-                {
-                    alignItems,
-                    justifyContent,
-                    gap,
-                    wrapChildren,
-                    defaultChildBehavior,
-                },
-                'column',
-            ),
+        () => propsToDataAttrs({ alignItems, justifyContent, gap, wrapChildren, defaultChildBehavior }, "column"),
         [alignItems, justifyContent, gap, wrapChildren, defaultChildBehavior],
     );
 

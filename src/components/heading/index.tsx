@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
-import { propsToDataAttrs } from '@/lib/utilities';
-import '@/components/heading/heading.css';
+import { useMemo } from "react";
+import { propsToDataAttrs } from "@/lib/utilities";
+import "@/components/heading/heading.css";
 
-type LkHeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type LkHeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 interface LkHeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     tag?: LkHeadingTag;
@@ -24,21 +24,21 @@ interface LkHeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
  * @returns A semantic heading element with the specified tag and styling
  */
 export default function Heading({
-    tag = 'h2',
-    fontClass = 'display2-bold',
+    tag = "h2",
+    fontClass = "display2-bold",
     fontColor,
     // content = "Heading",
     className,
     children,
     ...restProps
 }: LkHeadingProps) {
-    const headingAttrs = useMemo(() => propsToDataAttrs(restProps, 'heading'), [restProps]);
+    const headingAttrs = useMemo(() => propsToDataAttrs(restProps, "heading"), [restProps]);
     const Tag = tag;
 
     return (
         <Tag
             data-lk-component="heading"
-            className={`${fontClass} color-${fontColor} ${className || ''}`}
+            className={`${fontClass} color-${fontColor} ${className || ""}`}
             {...headingAttrs}
         >
             {children}

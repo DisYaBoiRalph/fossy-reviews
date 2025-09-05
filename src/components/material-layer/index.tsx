@@ -1,12 +1,12 @@
-'use client';
-import { propsToDataAttrs } from '@/lib/utilities';
-import { useMemo } from 'react';
+"use client";
+import { propsToDataAttrs } from "@/lib/utilities";
+import { useMemo } from "react";
 
 /** LKMatProps is an object of any of the given types. Each material type has different unique props. */
 type LkMatProps = LkMatProps_Glass | LkMatProps_Flat;
 
 type LkMatProps_Glass = {
-    thickness?: 'thick' | 'normal' | 'thin'; // Thickness of the glass material. Thicker material blurs more.
+    thickness?: "thick" | "normal" | "thin"; // Thickness of the glass material. Thicker material blurs more.
     tint?: LkColor; // Optional tint color for the glass material.
     tintOpacity?: number; // Optional opacity for the tint color. Defaults to 0.5.
     light?: boolean; // Optional. If true, adds a secondary layer for luminance effects.
@@ -18,7 +18,7 @@ type LkMatProps_Flat = {
     textColor?: LkColor;
 };
 
-type LkMaterialType = 'flat' | 'glass' | 'debug';
+type LkMaterialType = "flat" | "glass" | "debug";
 
 interface LkMaterialLayerProps extends React.HTMLAttributes<HTMLDivElement> {
     zIndex?: number; // Optional z-index for the material layer. Different use cases might need it to be at different z-indexes.
@@ -46,7 +46,7 @@ export default function MaterialLayer({ zIndex = 0, type, materialProps }: LkMat
     return (
         <>
             <div data-lk-component="material-layer" data-lk-material-type={type} style={{ zIndex: zIndex }}>
-                {type === 'glass' && (
+                {type === "glass" && (
                     <div>
                         <div data-lk-material-sublayer="texture">
                             {(materialProps as LkMatProps_Glass)?.tint && (
@@ -61,7 +61,7 @@ export default function MaterialLayer({ zIndex = 0, type, materialProps }: LkMat
                     </div>
                 )}
 
-                {type === 'flat' && (
+                {type === "flat" && (
                     <div>
                         <div data-lk-material-sublayer="bgColor"></div>
                     </div>
@@ -70,7 +70,7 @@ export default function MaterialLayer({ zIndex = 0, type, materialProps }: LkMat
 
             <style jsx>
                 {`
-                    [data-lk-component='material-layer'] {
+                    [data-lk-component="material-layer"] {
                         position: absolute;
                         inset: 0;
                         width: 100%;
@@ -89,13 +89,13 @@ export default function MaterialLayer({ zIndex = 0, type, materialProps }: LkMat
             {/** Glass behavior */}
 
             <style jsx>{`
-                [data-lk-material-type='glass'] {
-                    [data-lk-material-sublayer='tint'] {
+                [data-lk-material-type="glass"] {
+                    [data-lk-material-sublayer="tint"] {
                         opacity: ${(materialProps as LkMatProps_Glass)?.tintOpacity || 0.2};
-                        background-color: var(--lk-${(materialProps as LkMatProps_Glass)?.tint || 'transparent'});
+                        background-color: var(--lk-${(materialProps as LkMatProps_Glass)?.tint || "transparent"});
                     }
 
-                    [data-lk-material-sublayer='texture'] {
+                    [data-lk-material-sublayer="texture"] {
                         --blur-thick: var(--lk-size-lg);
                         --blur-normal: var(--lk-size-md);
                         --blur-thin: var(--lk-size-xs);
@@ -103,23 +103,23 @@ export default function MaterialLayer({ zIndex = 0, type, materialProps }: LkMat
                         z-index: 1;
                         isolation: isolate;
                         backdrop-filter: blur(
-                            var(--blur-${(materialProps as LkMatProps_Glass)?.thickness || 'normal'})
+                            var(--blur-${(materialProps as LkMatProps_Glass)?.thickness || "normal"})
                         );
                     }
 
-                    [data-lk-material-sublayer='light'] {
-                        background: ${(materialProps as LkMatProps_Glass)?.lightExpression || 'none'};
+                    [data-lk-material-sublayer="light"] {
+                        background: ${(materialProps as LkMatProps_Glass)?.lightExpression || "none"};
                         mix-blend-mode: soft-light;
                         opacity: 1;
                     }
 
-                    [data-lk-material-sublayer='base-glass-fill'] {
+                    [data-lk-material-sublayer="base-glass-fill"] {
                         background-color: var(--lk-surface);
-                        opacity: ${getGlassFillOpacity((materialProps as LkMatProps_Glass)?.thickness || 'normal')};
+                        opacity: ${getGlassFillOpacity((materialProps as LkMatProps_Glass)?.thickness || "normal")};
                     }
                 }
-                [data-lk-material-type='flat'] {
-                    [data-lk-material-sublayer='bgColor'] {
+                [data-lk-material-type="flat"] {
+                    [data-lk-material-sublayer="bgColor"] {
                         background-color: ${getBgColor((materialProps as LkMatProps_Flat)?.bgColor)};
                     }
                 }
@@ -128,13 +128,13 @@ export default function MaterialLayer({ zIndex = 0, type, materialProps }: LkMat
     );
 }
 
-function getGlassFillOpacity(thickness: 'thick' | 'normal' | 'thin') {
+function getGlassFillOpacity(thickness: "thick" | "normal" | "thin") {
     switch (thickness) {
-        case 'thick':
+        case "thick":
             return 0.8;
-        case 'normal':
+        case "normal":
             return 0.6;
-        case 'thin':
+        case "thin":
             return 0.4;
         default:
             return 0.6;

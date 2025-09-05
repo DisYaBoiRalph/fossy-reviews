@@ -1,3 +1,3 @@
 export default {
-    content: ['./registry/**/*.{js,ts,jsx,tsx}'],
+    content: ["./registry/**/*.{js,ts,jsx,tsx}"],
 };

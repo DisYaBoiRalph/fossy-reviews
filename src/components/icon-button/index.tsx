@@ -1,13 +1,13 @@
-import { useMemo } from 'react';
-import { propsToDataAttrs } from '@/lib/utilities';
-import '@/components/icon-button/icon-button.css';
-import Icon from '@/components/icon';
-import StateLayer from '@/components/state-layer';
-import { IconName } from 'lucide-react/dynamic';
-import { getOnToken } from '@/lib/colorUtils';
+import { useMemo } from "react";
+import { propsToDataAttrs } from "@/lib/utilities";
+import "@/components/icon-button/icon-button.css";
+import Icon from "@/components/icon";
+import StateLayer from "@/components/state-layer";
+import { IconName } from "lucide-react/dynamic";
+import { getOnToken } from "@/lib/colorUtils";
 
 declare global {
-    type LkIconButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    type LkIconButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
 }
 
 interface LkIconButtonBaseProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,24 +17,24 @@ interface LkIconButtonBaseProps extends React.ButtonHTMLAttributes<HTMLButtonEle
     className?: string; //optional, making explicit here so we can control how it mixes in with locally-passed props
 }
 
-type IconButtonColor<T extends 'fill' | 'outline' | 'text'> = T extends 'fill' ? LkColorWithOnToken : LkColor;
+type IconButtonColor<T extends "fill" | "outline" | "text"> = T extends "fill" ? LkColorWithOnToken : LkColor;
 
-export interface LkIconButtonProps<T extends 'fill' | 'outline' | 'text' = 'fill'> extends LkIconButtonBaseProps {
+export interface LkIconButtonProps<T extends "fill" | "outline" | "text" = "fill"> extends LkIconButtonBaseProps {
     icon: IconName;
     variant?: T;
     color?: IconButtonColor<T>;
 }
 
-export default function IconButton<T extends 'fill' | 'outline' | 'text' = 'fill'>({
-    icon = 'roller-coaster',
-    variant = 'fill' as T,
-    color = 'primary' as IconButtonColor<T>,
-    size = 'md',
-    fontClass = 'body',
+export default function IconButton<T extends "fill" | "outline" | "text" = "fill">({
+    icon = "roller-coaster",
+    variant = "fill" as T,
+    color = "primary" as IconButtonColor<T>,
+    size = "md",
+    fontClass = "body",
     className,
     ...restProps
 }: LkIconButtonProps<T>) {
-    const dataAttrs = useMemo(() => propsToDataAttrs({ variant, color, size }, 'icon-button'), [variant, color, size]);
+    const dataAttrs = useMemo(() => propsToDataAttrs({ variant, color, size }, "icon-button"), [variant, color, size]);
 
     const onToken = getOnToken(color) as LkColor;
 
@@ -43,14 +43,14 @@ export default function IconButton<T extends 'fill' | 'outline' | 'text' = 'fill
 
     function getIconStrokeWidth(fontClass: LkFontClass) {
         switch (fontClass) {
-            case 'display1':
-            case 'display2':
-            case 'title1':
+            case "display1":
+            case "display2":
+            case "title1":
                 return 1.5;
-            case 'subheading':
-            case 'label':
-            case 'caption':
-            case 'capline':
+            case "subheading":
+            case "label":
+            case "caption":
+            case "capline":
                 return 2;
             default:
                 return 1.75;
@@ -58,12 +58,12 @@ export default function IconButton<T extends 'fill' | 'outline' | 'text' = 'fill
     }
 
     /**Dynamically set icon and state-layer color based on variant */
-    function getIconColor(variant: 'fill' | 'outline' | 'text') {
+    function getIconColor(variant: "fill" | "outline" | "text") {
         switch (variant) {
-            case 'outline':
-            case 'text':
+            case "outline":
+            case "text":
                 return color;
-            case 'fill':
+            case "fill":
                 return onToken;
         }
     }
@@ -74,7 +74,7 @@ export default function IconButton<T extends 'fill' | 'outline' | 'text' = 'fill
             type="button"
             {...dataAttrs}
             {...restProps}
-            className={`${fontClass} ${className || ''}`}
+            className={`${fontClass} ${className || ""}`}
         >
             <div>
                 <Icon name={icon} color={getIconColor(variant)} strokeWidth={iconStrokeWidth}></Icon>

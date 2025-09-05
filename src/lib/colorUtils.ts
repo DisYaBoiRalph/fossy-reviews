@@ -1,50 +1,50 @@
-import type LkColorWithOnToken from '@/lib/types/lk-color';
-import type LkColor from '@/lib/types/lk-color';
-import { LkColors } from '@/lib/utils/debugUtils';
+import type LkColorWithOnToken from "@/lib/types/lk-color";
+import type LkColor from "@/lib/types/lk-color";
+import { LkColors } from "@/lib/utils/debugUtils";
 
 const colorsWithOnTokens = [
-    'primary',
-    'primarycontainer',
-    'secondary',
-    'secondarycontainer',
-    'tertiary',
-    'tertiarycontainer',
-    'error',
-    'errorcontainer',
-    'success',
-    'successcontainer',
-    'warning',
-    'warningcontainer',
-    'info',
-    'infocontainer',
-    'background',
-    'surface',
-    'surfacevariant',
-    'surfacecontainerlowest', //todo: make sure component assigns "onsurface" to text when these are present
-    'surfacecontainerlow',
-    'surfacecontainer',
-    'surfacecontainerhigh',
-    'surfacecontainerhighest',
-    'inversesurface',
-    'primaryfixed',
-    'secondaryfixed',
-    'tertiaryfixed',
+    "primary",
+    "primarycontainer",
+    "secondary",
+    "secondarycontainer",
+    "tertiary",
+    "tertiarycontainer",
+    "error",
+    "errorcontainer",
+    "success",
+    "successcontainer",
+    "warning",
+    "warningcontainer",
+    "info",
+    "infocontainer",
+    "background",
+    "surface",
+    "surfacevariant",
+    "surfacecontainerlowest", //todo: make sure component assigns "onsurface" to text when these are present
+    "surfacecontainerlow",
+    "surfacecontainer",
+    "surfacecontainerhigh",
+    "surfacecontainerhighest",
+    "inversesurface",
+    "primaryfixed",
+    "secondaryfixed",
+    "tertiaryfixed",
 ];
 
 const colorsWithoutOnTokens = [
-    'onprimaryfixed',
-    'primaryfixeddim',
-    'onprimaryfixedvariant',
-    'onsecondaryfixed',
-    'secondaryfixeddim',
-    'onsecondaryfixedvariant',
-    'ontertiaryfixed',
-    'tertiaryfixeddim',
-    'ontertiaryfixedvariant',
-    'surfacedim',
-    'surfacebright',
-    'outline',
-    'outlinevariant',
+    "onprimaryfixed",
+    "primaryfixeddim",
+    "onprimaryfixedvariant",
+    "onsecondaryfixed",
+    "secondaryfixeddim",
+    "onsecondaryfixedvariant",
+    "ontertiaryfixed",
+    "tertiaryfixeddim",
+    "ontertiaryfixedvariant",
+    "surfacedim",
+    "surfacebright",
+    "outline",
+    "outlinevariant",
 ];
 
 export function getColorsWithoutOnTokens(): LkColor[] {
@@ -58,11 +58,11 @@ export function getOnToken(colorToken: LkColor) {
     //   throw new Error(`The color token "${colorToken}" does not have a corresponding "on-" token.`);
     // }
 
-    const isAlreadyOnToken = colorToken.startsWith('on') || colorToken.startsWith('inverseon');
-    const startsWithOn = colorToken.startsWith('on');
-    const endsWithFixed = colorToken.endsWith('fixed');
-    const endsWithDim = colorToken.endsWith('dim');
-    const endsWithVariant = colorToken.endsWith('variant');
+    const isAlreadyOnToken = colorToken.startsWith("on") || colorToken.startsWith("inverseon");
+    const startsWithOn = colorToken.startsWith("on");
+    const endsWithFixed = colorToken.endsWith("fixed");
+    const endsWithDim = colorToken.endsWith("dim");
+    const endsWithVariant = colorToken.endsWith("variant");
 
     function getFixedColorComplement(color: LkColor) {
         /** If the color token ends with fixed, see if it sta */
@@ -100,38 +100,38 @@ export function getOnToken(colorToken: LkColor) {
         case false:
             switch (colorToken) {
                 /**First, handle surfacecontainers and their variants */
-                case 'surfacecontainerlowest':
-                case 'surfacecontainerlow':
-                case 'surfacecontainer':
-                case 'surfacecontainerhigh':
-                case 'surfacecontainerhighest':
-                case 'surfacedim':
-                case 'surfacebright':
+                case "surfacecontainerlowest":
+                case "surfacecontainerlow":
+                case "surfacecontainer":
+                case "surfacecontainerhigh":
+                case "surfacecontainerhighest":
+                case "surfacedim":
+                case "surfacebright":
                     tokenToReturn = `onsurface`;
                     break;
-                case 'inversesurface':
+                case "inversesurface":
                     tokenToReturn = `inverseonsurface`;
                     break;
-                case 'inverseprimary':
-                    tokenToReturn = 'onprimarycontainer';
+                case "inverseprimary":
+                    tokenToReturn = "onprimarycontainer";
                     break;
-                case 'shadow':
-                case 'scrim':
-                    tokenToReturn = 'white';
+                case "shadow":
+                case "scrim":
+                    tokenToReturn = "white";
                     break;
-                case 'primaryfixeddim':
-                case 'secondaryfixeddim':
-                case 'tertiaryfixeddim':
-                case 'onprimaryfixed':
-                case 'onsecondaryfixed':
-                case 'ontertiaryfixed':
-                case 'onprimaryfixedvariant':
-                case 'onsecondaryfixedvariant':
-                case 'ontertiaryfixedvariant':
+                case "primaryfixeddim":
+                case "secondaryfixeddim":
+                case "tertiaryfixeddim":
+                case "onprimaryfixed":
+                case "onsecondaryfixed":
+                case "ontertiaryfixed":
+                case "onprimaryfixedvariant":
+                case "onsecondaryfixedvariant":
+                case "ontertiaryfixedvariant":
                     tokenToReturn = getFixedColorComplement(colorToken);
                     break;
-                case 'outline':
-                case 'outlinevariant':
+                case "outline":
+                case "outlinevariant":
                     tokenToReturn = `onsurfacevariant`;
                     break;
                 default:
@@ -141,7 +141,7 @@ export function getOnToken(colorToken: LkColor) {
             break;
         default:
             switch (colorToken) {
-                case 'inverseonsurface':
+                case "inverseonsurface":
                     tokenToReturn = `inversesurface`;
                     break;
                 default:

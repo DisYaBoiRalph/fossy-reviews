@@ -2,7 +2,7 @@
     "useTabs": false,
     "printWidth": 120,
     "tabWidth": 4,
-    "singleQuote": true,
+    "singleQuote": false,
     "endOfLine": "lf",
     "overrides": [
         {

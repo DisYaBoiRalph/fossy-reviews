@@ -1,4 +1,4 @@
-import '@/components/placeholder-block/placeholder-block.css';
+import "@/components/placeholder-block/placeholder-block.css";
 
 export default function PlaceholderBlock() {
     return (
