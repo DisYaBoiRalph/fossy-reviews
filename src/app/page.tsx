@@ -3,10 +3,13 @@ import Heading from "@/components/heading";
 import Section from "@/components/section";
 import Text from "@/components/text";
 import { boomerang } from "./common/constants";
+import ThemeController from "@/components/theme-controller";
+import Button from "@/components/button";
 
 const Home = () => {
     return (
         <Section padding="sm">
+            <ThemeController />
             <Container>
                 <Heading className={`${boomerang.className}`} tag="h1" fontClass="display1">
                     Fossy Reviews
@@ -27,6 +30,15 @@ const Home = () => {
                         Donec pulvinar turpis felis, sit amet gravida tortor dictum in.
                     </Text>
                 </Section>
+                <Container style={{ display: "flex", gap: "10px" }}>
+                    <Button label="Primary" color="primary" />
+                    <Button label="Secondary" color="secondary" />
+                    <Button label="Tertiary" color="tertiary" />
+                    <Button label="Success" color="success" />
+                    <Button label="Warning" color="warning" />
+                    <Button label="Error" color="error" />
+                    <Button label="Info" color="info" />
+                </Container>
             </Container>
         </Section>
     );

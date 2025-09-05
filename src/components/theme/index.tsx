@@ -203,19 +203,19 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
      *
      */
 
-    const [colorMode, setColorMode] = useState<"light" | "dark">("light");
+    const [colorMode, setColorMode] = useState<"light" | "dark">("dark");
 
     const [palette, setPalette] = useState<PaletteState>(
         {
-            primary: "#035eff",
-            secondary: "#badcff",
-            tertiary: "#00ddfe",
-            neutral: "#000000",
+            primary: "#6650a4",
+            secondary: "#625b71",
+            tertiary: "#7d5260",
+            neutral: "#f1ecf1",
             neutralvariant: "#3f4f5b",
             error: "#dd305c",
-            warning: "#feb600",
-            success: "#0cfecd",
-            info: "#175bfc",
+            warning: "#ffbd6a",
+            success: "#00cba2",
+            info: "#5750fa",
         },
 
         /**
