@@ -5,8 +5,11 @@ import Container from "@/components/container";
 import NavBar from "@/components/navbar";
 import Section from "@/components/section";
 import { NavBarButton } from "./buttons/NavBarButton";
+import { useRouter } from "next/navigation";
+import IconButton from "@/components/icon-button";
 
 export const Header = () => {
+    const router = useRouter();
     return (
         <Container className="border-b shadow-sm">
             <Section>
@@ -18,8 +21,10 @@ export const Header = () => {
                             label="Graph Tool"
                             onClick={() => window.open("https://disyaboiralph.github.io/graph", "_blank")}
                         />,
+                        <NavBarButton key="3" label="About" onClick={() => router.push("/about")} />,
                     ]}
-                    iconButtons={[
+                    iconButtons={[<IconButton key="search" icon="search" variant="text" />]}
+                    ctaButtons={[
                         <Button
                             key="end-1"
                             startIcon="youtube"

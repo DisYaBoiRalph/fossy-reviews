@@ -78,7 +78,7 @@ export default function NavBar({
                 <Column alignItems="start" className={`navbar-mobile ${menuOpen ? "active" : ""}`}>
                     <IconButton icon="menu" onClick={() => toggleMenu()} />
                     <Link href="/">
-                        <Image alt="" src="/vercel.svg" width="md" height="md" />
+                        <Image alt="" src="fossy-favicon.png" width="md" height="md" />
                     </Link>
                     <Column>{navButtons}</Column>
                     <Column>{navDropdowns}</Column>

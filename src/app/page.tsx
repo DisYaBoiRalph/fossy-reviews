@@ -1,21 +1,19 @@
+import { boomerang } from "@/common/constants";
+import Button from "@/components/button";
 import Container from "@/components/container";
 import Heading from "@/components/heading";
 import Section from "@/components/section";
 import Text from "@/components/text";
-import { boomerang } from "./common/constants";
-import ThemeController from "@/components/theme-controller";
-import Button from "@/components/button";
 
 const Home = () => {
     return (
-        <Section padding="sm">
-            <ThemeController />
+        <Section className="p-lg">
             <Container>
                 <Heading className={`${boomerang.className}`} tag="h1" fontClass="display1">
                     Fossy Reviews
                 </Heading>
-                <Section padding="sm">
-                    <Text>
+                <Section className="p-md">
+                    <Text tag="p">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet sapien mollis, convallis
                         lectus ut, porta ipsum. Sed in turpis at eros cursus commodo. Ut suscipit odio quis sagittis
                         pellentesque. Quisque non ipsum ac nibh aliquam euismod. Morbi tristique odio est, id sodales
