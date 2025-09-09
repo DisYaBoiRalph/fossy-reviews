@@ -10,7 +10,7 @@ import Column from "@/components/column";
 import "@/components/navbar/navbar.css";
 import MaterialLayer from "@/components/material-layer";
 
-interface LkNavBarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LkNavBarProps extends React.HTMLAttributes<HTMLDivElement> {
     material?: LkMaterial;
     navButtons?: React.ReactNode;
     navDropdowns?: React.ReactNode;

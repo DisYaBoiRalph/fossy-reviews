@@ -4,7 +4,7 @@ import "@/components/section/section.css";
 
 type SpacingSize = "xs" | "sm" | "md" | "lg" | "xl" | "none";
 
-interface LkSectionProps extends React.HTMLAttributes<HTMLElement> {
+export interface LkSectionProps extends React.HTMLAttributes<HTMLElement> {
     padding?: SpacingSize;
     container?: React.ReactNode;
     px?: SpacingSize;

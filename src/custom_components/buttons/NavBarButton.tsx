@@ -1,6 +1,6 @@
 import Button from "@/components/button";
 
-interface INavBarButtonProps {
+export interface INavBarButtonProps {
     color?: LkColorWithOnToken;
     label: string;
     onClick?: () => void;

@@ -182,7 +182,18 @@ const config: Config = {
 
     // A map from regular expressions to paths to transformers
     transform: {
-        "^.+\\.(js|jsx|ts|tsx|mjs)$": "babel-jest", // 👈 include mjs
+        "^.+\\.(js|jsx|ts|tsx|mjs)$": [
+            "@swc/jest",
+            {
+                jsc: {
+                    transform: {
+                        react: {
+                            runtime: "automatic", // 👈 fixes "React is not defined"
+                        },
+                    },
+                },
+            },
+        ],
     },
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

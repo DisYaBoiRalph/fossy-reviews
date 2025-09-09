@@ -1,4 +1,10 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { LkButtonProps } from "@/components/button";
+import { LkContainerProps } from "@/components/container";
+import { LkIconButtonProps } from "@/components/icon-button";
+import { LkNavBarProps } from "@/components/navbar";
+import { LkSectionProps } from "@/components/section";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { INavBarButtonProps } from "../buttons";
 import { Header } from "./Header";
 
 // Mock Next.js router
@@ -20,7 +26,7 @@ Object.defineProperty(window, "open", {
 // Mock LiftKit components
 jest.mock("@/components/button", () => ({
     __esModule: true,
-    default: ({ label, startIcon, variant, size, color, onClick, ...props }: any) => (
+    default: ({ label, startIcon, variant, size, color, onClick, ...props }: LkButtonProps) => (
         <button
             data-testid="button"
             data-label={label}
@@ -38,7 +44,7 @@ jest.mock("@/components/button", () => ({
 
 jest.mock("@/components/container", () => ({
     __esModule: true,
-    default: ({ children, className, ...props }: any) => (
+    default: ({ children, className, ...props }: LkContainerProps) => (
         <div data-testid="container" className={className} {...props}>
             {children}
         </div>
@@ -47,7 +53,7 @@ jest.mock("@/components/container", () => ({
 
 jest.mock("@/components/navbar", () => ({
     __esModule: true,
-    default: ({ navButtons, iconButtons, ctaButtons, ...props }: any) => (
+    default: ({ navButtons, iconButtons, ctaButtons, ...props }: LkNavBarProps) => (
         <nav data-testid="navbar" {...props}>
             <div data-testid="nav-buttons">{navButtons}</div>
             <div data-testid="icon-buttons">{iconButtons}</div>
@@ -58,7 +64,7 @@ jest.mock("@/components/navbar", () => ({
 
 jest.mock("@/components/section", () => ({
     __esModule: true,
-    default: ({ children, ...props }: any) => (
+    default: ({ children, ...props }: LkSectionProps) => (
         <section data-testid="section" {...props}>
             {children}
         </section>
@@ -67,7 +73,7 @@ jest.mock("@/components/section", () => ({
 
 jest.mock("@/components/icon-button", () => ({
     __esModule: true,
-    default: ({ icon, variant, ...props }: any) => (
+    default: ({ icon, variant, ...props }: LkIconButtonProps) => (
         <button data-testid="icon-button" data-icon={icon} data-variant={variant} {...props}>
             {icon}
         </button>
@@ -76,7 +82,7 @@ jest.mock("@/components/icon-button", () => ({
 
 // Mock NavBarButton
 jest.mock("../buttons/NavBarButton", () => ({
-    NavBarButton: ({ label, onClick, ...props }: any) => (
+    NavBarButton: ({ label, onClick, ...props }: INavBarButtonProps) => (
         <button data-testid="nav-bar-button" data-label={label} onClick={onClick} {...props}>
             {label}
         </button>

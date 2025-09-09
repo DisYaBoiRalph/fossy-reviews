@@ -1,10 +1,15 @@
+import { LkButtonProps } from "@/components/button";
+import { LkContainerProps } from "@/components/container";
+import { LkHeadingProps } from "@/components/heading";
+import { LkSectionProps } from "@/components/section";
+import { LkTextProps } from "@/components/text";
 import { render, screen } from "@testing-library/react";
 import Home from "./page";
 
 // Mock LiftKit components
 jest.mock("@/components/button", () => ({
     __esModule: true,
-    default: ({ label, color, ...props }: any) => (
+    default: ({ label, color, ...props }: LkButtonProps) => (
         <button data-testid={`button-${color}`} {...props}>
             {label}
         </button>
@@ -13,7 +18,7 @@ jest.mock("@/components/button", () => ({
 
 jest.mock("@/components/container", () => ({
     __esModule: true,
-    default: ({ children, ...props }: any) => (
+    default: ({ children, ...props }: LkContainerProps) => (
         <div data-testid="container" {...props}>
             {children}
         </div>
@@ -22,7 +27,7 @@ jest.mock("@/components/container", () => ({
 
 jest.mock("@/components/heading", () => ({
     __esModule: true,
-    default: ({ children, tag, fontClass, ...props }: any) => {
+    default: ({ children, tag, ...props }: LkHeadingProps) => {
         const Tag = tag || "h1";
         return (
             <Tag data-testid="heading" {...props}>
@@ -34,7 +39,7 @@ jest.mock("@/components/heading", () => ({
 
 jest.mock("@/components/section", () => ({
     __esModule: true,
-    default: ({ children, ...props }: any) => (
+    default: ({ children, ...props }: LkSectionProps) => (
         <section data-testid="section" {...props}>
             {children}
         </section>
@@ -43,12 +48,11 @@ jest.mock("@/components/section", () => ({
 
 jest.mock("@/components/text", () => ({
     __esModule: true,
-    default: ({ children, tag, ...props }: any) => {
-        const Tag = tag || "p";
+    default: ({ children, ...props }: LkTextProps) => {
         return (
-            <Tag data-testid="text" {...props}>
+            <p data-testid="text" {...props}>
                 {children}
-            </Tag>
+            </p>
         );
     },
 }));

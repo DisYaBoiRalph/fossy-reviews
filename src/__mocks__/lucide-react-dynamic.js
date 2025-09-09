@@ -1,6 +1,11 @@
-// Mock for lucide-react/dynamic
+import React from "react";
+
 const DynamicIcon = ({ name, ...props }) => {
-    return <div data-testid="dynamic-icon" data-name={name} {...props} />;
+    return React.createElement("div", {
+        "data-testid": "dynamic-icon",
+        "data-name": name,
+        ...props,
+    });
 };
 
 const iconNames = [
@@ -26,5 +31,4 @@ const iconNames = [
     "bookmark",
 ];
 
-export { DynamicIcon, iconNames };
-export default DynamicIcon;
+module.exports = { DynamicIcon, iconNames, default: DynamicIcon };
