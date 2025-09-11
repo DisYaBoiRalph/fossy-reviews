@@ -3,7 +3,8 @@ import { LkContainerProps } from "@/components/container";
 import { LkIconButtonProps } from "@/components/icon-button";
 import { LkNavBarProps } from "@/components/navbar";
 import { LkSectionProps } from "@/components/section";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { INavBarButtonProps } from "../buttons";
 import { Header } from "./Header";
 
@@ -132,29 +133,29 @@ describe("Header Component", () => {
         expect(ctaButton).toHaveAttribute("data-color", "error");
     });
 
-    it("handles About button click navigation", () => {
+    it("handles About button click navigation", async () => {
         render(<Header />);
 
         const aboutButton = screen.getByText("About");
-        fireEvent.click(aboutButton);
+        await userEvent.click(aboutButton);
 
         expect(mockPush).toHaveBeenCalledWith("/about");
     });
 
-    it("handles Graph Tool button click to open external link", () => {
+    it("handles Graph Tool button click to open external link", async () => {
         render(<Header />);
 
         const graphToolButton = screen.getByText("Graph Tool");
-        fireEvent.click(graphToolButton);
+        await userEvent.click(graphToolButton);
 
         expect(mockOpen).toHaveBeenCalledWith("https://disyaboiralph.github.io/graph", "_blank");
     });
 
-    it("handles YouTube button click to open external link", () => {
+    it("handles YouTube button click to open external link", async () => {
         render(<Header />);
 
         const youtubeButton = screen.getByText("YouTube");
-        fireEvent.click(youtubeButton);
+        await userEvent.click(youtubeButton);
 
         expect(mockOpen).toHaveBeenCalledWith("https://www.youtube.com/@DisYaBoiRalph", "_blank");
     });
