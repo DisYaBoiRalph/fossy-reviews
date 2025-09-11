@@ -21,7 +21,8 @@ export const Header = () => {
                             label="Graph Tool"
                             onClick={() => window.open("https://disyaboiralph.github.io/graph", "_blank")}
                         />,
-                        <NavBarButton key="3" label="About" onClick={() => router.push("/about")} />,
+                        <NavBarButton key="3" label="Test Visx" onClick={() => router.push("/test")} />,
+                        <NavBarButton key="4" label="About" onClick={() => router.push("/about")} />,
                     ]}
                     iconButtons={[<IconButton key="search" icon="search" variant="text" />]}
                     ctaButtons={[
