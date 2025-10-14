@@ -3,8 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev --turbopack -H 0.0.0.0 -p 3000",
-        "build": "next build",
+        "dev": "npm run generate-data && next dev --turbopack -H 0.0.0.0 -p 3000",
+        "build": "npm run generate-data:build && next build",
+        "generate-data:build": "node scripts/generateDataImports.js --build-time",
+        "generate-data": "node scripts/generateDataImports.js",
         "start": "next start",
         "lint": "next lint",
         "add": "liftkit add",
@@ -20,6 +22,8 @@
         "@next/mdx": "^15.5.2",
         "@types/mdx": "^2.0.13",
         "@visx/axis": "^3.12.0",
+        "@visx/grid": "^3.12.0",
+        "@visx/group": "^3.12.0",
         "@visx/responsive": "^3.12.0",
         "@visx/scale": "^3.12.0",
         "@visx/shape": "^3.12.0",
@@ -29,8 +33,8 @@
         "lucide-react": "^0.511.0",
         "material-dynamic-colors": "^1.1.2",
         "next": "^15.3.1",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
     },
     "devDependencies": {
         "@chainlift/liftkit": "^0.2.0",
