@@ -69,12 +69,12 @@ src/
 
 2. **Install dependencies**
    ```bash
-   npm install
+   bun install
    ```
 
 3. **Run the development server**
    ```bash
-   npm run dev
+   bun run dev
    ```
 
 4. **Open your browser**
@@ -86,13 +86,13 @@ The project includes comprehensive test coverage:
 
 ```bash
 # Run all tests
-npm run test
+bun run test
 
 # Run tests in watch mode
-npm run test -- --watch
+bun run test --watch
 
 # Generate coverage report
-npm run test -- --coverage
+bun run test --coverage
 ```
 
 **Test Coverage**: 100% across all metrics (statements, branches, functions, lines)
@@ -146,10 +146,10 @@ The site is optimized for static deployment:
 
 ```bash
 # Build for production
-npm run build
+bun run build
 
 # Export static files
-npm run export
+bun run export
 ```
 
 Deploy to platforms like Vercel, Netlify, or GitHub Pages.
