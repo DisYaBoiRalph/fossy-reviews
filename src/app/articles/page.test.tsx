@@ -1,3 +1,4 @@
+import { LkCardProps } from "@/components/card";
 import { LkContainerProps } from "@/components/container";
 import { LkHeadingProps } from "@/components/heading";
 import { LkSectionProps } from "@/components/section";
@@ -5,7 +6,15 @@ import { LkTextProps } from "@/components/text";
 import { render, screen } from "@testing-library/react";
 import Articles from "./page";
 
-// Mock LiftKit components
+jest.mock("next/link", () => ({
+    __esModule: true,
+    default: ({ children, href, ...props }: { children: React.ReactNode; href: string }) => (
+        <a href={href} {...props}>
+            {children}
+        </a>
+    ),
+}));
+
 jest.mock("@/components/container", () => ({
     __esModule: true,
     default: ({ children, ...props }: LkContainerProps) => (
@@ -45,7 +54,24 @@ jest.mock("@/components/text", () => ({
     ),
 }));
 
-// Mock constants
+jest.mock("@/components/grid", () => ({
+    __esModule: true,
+    default: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+        <div data-testid="grid" {...props}>
+            {children}
+        </div>
+    ),
+}));
+
+jest.mock("@/components/card", () => ({
+    __esModule: true,
+    default: ({ children, ...props }: LkCardProps) => (
+        <article data-testid="card" {...props}>
+            {children}
+        </article>
+    ),
+}));
+
 jest.mock("@/common/constants", () => ({
     boomerang: {
         className: "boomerang-font",
@@ -57,41 +83,32 @@ describe("Articles Page", () => {
         render(<Articles />);
 
         expect(screen.getByText("Articles")).toBeInTheDocument();
-        expect(screen.getByTestId("heading")).toHaveClass("boomerang-font");
     });
 
-    it("renders the articles text", () => {
+    it("renders article cards for all seeded entries", () => {
         render(<Articles />);
 
-        expect(screen.getByText("This is an about page.")).toBeInTheDocument();
+        expect(screen.getAllByTestId("card")).toHaveLength(4);
     });
 
-    it("has correct structure with sections and containers", () => {
+    it("shows a seeded article title", () => {
         render(<Articles />);
 
-        const sections = screen.getAllByTestId("section");
-        const containers = screen.getAllByTestId("container");
-
-        expect(sections.length).toBeGreaterThan(0);
-        expect(containers.length).toBeGreaterThan(0);
+        expect(screen.getByText("The Hidden Cost of Open Source Maintenance")).toBeInTheDocument();
     });
 
-    it("applies correct padding to sections", () => {
+    it("shows a seeded publish date", () => {
         render(<Articles />);
 
-        const sections = screen.getAllByTestId("section");
-        const mainSection = sections[0];
-        const textSection = sections[1];
-
-        expect(mainSection).toHaveAttribute("data-padding", "sm");
-        expect(textSection).toHaveAttribute("data-padding", "sm");
+        expect(screen.getByText("Published: 2026-04-01")).toBeInTheDocument();
     });
 
-    it("renders heading with correct tag and font class", () => {
+    it("links an article card to its route", () => {
         render(<Articles />);
 
-        const heading = screen.getByTestId("heading");
-        expect(heading.tagName).toBe("H1");
-        expect(heading).toHaveClass("boomerang-font");
+        expect(screen.getByRole("link", { name: /the hidden cost of open source maintenance/i })).toHaveAttribute(
+            "href",
+            "/articles/open-source-maintenance-costs",
+        );
     });
 });
