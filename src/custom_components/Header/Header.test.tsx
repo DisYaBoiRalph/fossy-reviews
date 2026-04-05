@@ -105,10 +105,11 @@ describe("Header Component", () => {
         render(<Header />);
 
         const navButtons = screen.getAllByTestId("nav-bar-button");
-        expect(navButtons).toHaveLength(3);
+        expect(navButtons).toHaveLength(4);
 
         expect(screen.getByText("Reviews")).toBeInTheDocument();
         expect(screen.getByText("Graph Tool")).toBeInTheDocument();
+        expect(screen.getByText("Test Visx")).toBeInTheDocument();
         expect(screen.getByText("About")).toBeInTheDocument();
     });
 
@@ -127,7 +128,7 @@ describe("Header Component", () => {
         const ctaButton = screen.getByTestId("button");
         expect(ctaButton).toBeInTheDocument();
         expect(ctaButton).toHaveAttribute("data-label", "YouTube");
-        expect(ctaButton).toHaveAttribute("data-start-icon", "youtube");
+        expect(ctaButton).toHaveAttribute("data-start-icon", "play");
         expect(ctaButton).toHaveAttribute("data-variant", "text");
         expect(ctaButton).toHaveAttribute("data-size", "lg");
         expect(ctaButton).toHaveAttribute("data-color", "error");

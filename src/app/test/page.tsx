@@ -3,7 +3,7 @@ import React from "react";
 
 const Test = () => {
     // get data
-    
+
     // setup graph
     const width = 750;
     const height = 400;
@@ -18,29 +18,25 @@ const Test = () => {
     const yMax = height - margin.top - margin.bottom;
 
     // getting x and y values is a function.
-    const x = () => {
+    const x = () => {};
 
-    }
-
-    const y = () => {
-        
-    }
+    const y = () => {};
 
     const xScale = scaleLog({
         range: [20, 20_000],
-        domain: [x]
-    })
+        domain: [x],
+    });
 
     const yScale = scaleLinear({
         range: [70, 120],
-        domain: [y]
-    })
+        domain: [y],
+    });
 
-    return <svg width={width} height={height}>
-        <g transform={`translate(${margin.left},${margin.top})`}>
-
-        </g>
-    </svg>;
+    return (
+        <svg width={width} height={height}>
+            <g transform={`translate(${margin.left},${margin.top})`}></g>
+        </svg>
+    );
 };
 
 export default Test;

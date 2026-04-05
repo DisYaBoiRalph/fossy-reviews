@@ -28,7 +28,7 @@ export const Header = () => {
                     ctaButtons={[
                         <Button
                             key="end-1"
-                            startIcon="youtube"
+                            startIcon="play"
                             variant="text"
                             label="YouTube"
                             size="lg"
