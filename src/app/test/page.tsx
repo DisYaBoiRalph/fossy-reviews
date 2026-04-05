@@ -17,19 +17,14 @@ const Test = () => {
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
 
-    // getting x and y values is a function.
-    const x = () => {};
-
-    const y = () => {};
-
     const xScale = scaleLog({
-        range: [20, 20_000],
-        domain: [x],
+        range: [0, xMax] as const,
+        domain: [20, 20_000] as const,
     });
 
     const yScale = scaleLinear({
-        range: [70, 120],
-        domain: [y],
+        range: [yMax, 0] as const,
+        domain: [70, 120] as const,
     });
 
     return (
