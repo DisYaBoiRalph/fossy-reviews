@@ -4,8 +4,36 @@ import { LkHeadingProps } from "@/components/heading";
 import { LkSectionProps } from "@/components/section";
 import { LkTextProps } from "@/components/text";
 import { render, screen } from "@testing-library/react";
-import { articleSummaries } from "./articles.data";
+import { getArticleSummaries } from "./articles.util";
 import Articles from "./page";
+
+const mockArticleSummaries = [
+    {
+        slug: "open-source-maintenance-costs",
+        title: "The Hidden Cost of Open Source Maintenance",
+        publishedAt: "2026-04-01",
+    },
+    {
+        slug: "choosing-tools-over-hype",
+        title: "Choosing Tools Over Hype Cycles",
+        publishedAt: "2026-03-28",
+    },
+    {
+        slug: "what-makes-software-readable",
+        title: "What Makes Software Actually Readable",
+        publishedAt: "2026-03-24",
+    },
+    {
+        slug: "small-teams-shipping-well",
+        title: "How Small Teams Ship Reliable Software",
+        publishedAt: "2026-03-20",
+    },
+];
+
+jest.mock("./articles.util", () => ({
+    __esModule: true,
+    getArticleSummaries: jest.fn(),
+}));
 
 jest.mock("next/link", () => ({
     __esModule: true,
@@ -80,7 +108,12 @@ jest.mock("@/common/constants", () => ({
 }));
 
 describe("Articles Page", () => {
-    const firstArticle = articleSummaries[0];
+    const firstArticle = mockArticleSummaries[0];
+    const getArticleSummariesMock = getArticleSummaries as jest.MockedFunction<typeof getArticleSummaries>;
+
+    beforeEach(() => {
+        getArticleSummariesMock.mockReturnValue(mockArticleSummaries);
+    });
 
     it("renders the main heading", () => {
         render(<Articles />);
@@ -91,7 +124,7 @@ describe("Articles Page", () => {
     it("renders article cards for all seeded entries", () => {
         render(<Articles />);
 
-        expect(screen.getAllByTestId("card")).toHaveLength(articleSummaries.length);
+        expect(screen.getAllByTestId("card")).toHaveLength(mockArticleSummaries.length);
     });
 
     it("shows a seeded article title", () => {
@@ -113,5 +146,19 @@ describe("Articles Page", () => {
             "href",
             `/articles/${firstArticle.slug}`,
         );
+    });
+
+    it("shows an empty-state message when no article summaries exist", () => {
+        getArticleSummariesMock.mockReturnValue([]);
+        render(<Articles />);
+
+        expect(screen.getByText("No articles published yet.")).toBeInTheDocument();
+    });
+
+    it("renders no article cards when there are no article summaries", () => {
+        getArticleSummariesMock.mockReturnValue([]);
+        render(<Articles />);
+
+        expect(screen.queryByTestId("card")).not.toBeInTheDocument();
     });
 });
