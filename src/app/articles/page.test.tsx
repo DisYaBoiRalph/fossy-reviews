@@ -4,6 +4,7 @@ import { LkHeadingProps } from "@/components/heading";
 import { LkSectionProps } from "@/components/section";
 import { LkTextProps } from "@/components/text";
 import { render, screen } from "@testing-library/react";
+import { articleSummaries } from "./articles.data";
 import Articles from "./page";
 
 jest.mock("next/link", () => ({
@@ -79,6 +80,8 @@ jest.mock("@/common/constants", () => ({
 }));
 
 describe("Articles Page", () => {
+    const firstArticle = articleSummaries[0];
+
     it("renders the main heading", () => {
         render(<Articles />);
 
@@ -88,27 +91,27 @@ describe("Articles Page", () => {
     it("renders article cards for all seeded entries", () => {
         render(<Articles />);
 
-        expect(screen.getAllByTestId("card")).toHaveLength(4);
+        expect(screen.getAllByTestId("card")).toHaveLength(articleSummaries.length);
     });
 
     it("shows a seeded article title", () => {
         render(<Articles />);
 
-        expect(screen.getByText("The Hidden Cost of Open Source Maintenance")).toBeInTheDocument();
+        expect(screen.getByText(firstArticle.title)).toBeInTheDocument();
     });
 
     it("shows a seeded publish date", () => {
         render(<Articles />);
 
-        expect(screen.getByText("Published: 2026-04-01")).toBeInTheDocument();
+        expect(screen.getByText(`Published: ${firstArticle.publishedAt}`)).toBeInTheDocument();
     });
 
     it("links an article card to its route", () => {
         render(<Articles />);
 
-        expect(screen.getByRole("link", { name: /the hidden cost of open source maintenance/i })).toHaveAttribute(
+        expect(screen.getByRole("link", { name: firstArticle.title })).toHaveAttribute(
             "href",
-            "/articles/open-source-maintenance-costs",
+            `/articles/${firstArticle.slug}`,
         );
     });
 });
