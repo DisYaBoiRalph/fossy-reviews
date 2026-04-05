@@ -16,11 +16,7 @@ export const Header = () => {
                 <NavBar
                     navButtons={[
                         <NavBarButton key="1" label="Reviews" />,
-                        <NavBarButton
-                            key="2"
-                            label="Articles"
-                            onClick={() => router.push("/articles")}
-                        />,
+                        <NavBarButton key="2" label="Articles" onClick={() => router.push("/articles")} />,
                         <NavBarButton
                             key="3"
                             label="Graph Tool"

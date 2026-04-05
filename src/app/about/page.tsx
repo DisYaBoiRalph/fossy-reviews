@@ -10,7 +10,7 @@ export const metadata = {
 
 const About = () => {
     return (
-        <Section padding="sm">
+        <Section>
             <Container>
                 <Heading className={`${boomerang.className}`} tag="h1" fontClass="display1">
                     About

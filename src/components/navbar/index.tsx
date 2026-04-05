@@ -60,7 +60,7 @@ export default function NavBar({
             <div className="navbar-desktop">
                 <Row alignItems="center" gap="sm">
                     <Link href="/">
-                        <Image alt="" src="fossy-favicon.png" height="xl" />
+                        <Image alt="" src="/fossy-favicon.png" height="xl" />
                     </Link>
                 </Row>
                 <Row>
@@ -78,7 +78,7 @@ export default function NavBar({
                 <Column alignItems="start" className={`navbar-mobile ${menuOpen ? "active" : ""}`}>
                     <IconButton icon="menu" onClick={() => toggleMenu()} />
                     <Link href="/">
-                        <Image alt="" src="fossy-favicon.png" width="md" height="md" />
+                        <Image alt="" src="/fossy-favicon.png" width="md" height="md" />
                     </Link>
                     <Column>{navButtons}</Column>
                     <Column>{navDropdowns}</Column>

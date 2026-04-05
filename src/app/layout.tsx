@@ -27,7 +27,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                <link rel="shortcut icon" type="image/png" href="fossy-favicon.png" />
+                <link rel="shortcut icon" type="image/png" href="/fossy-favicon.png" />
             </head>
             <ThemeProvider>
                 <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
