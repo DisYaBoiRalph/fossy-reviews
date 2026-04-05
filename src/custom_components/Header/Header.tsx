@@ -18,11 +18,16 @@ export const Header = () => {
                         <NavBarButton key="1" label="Reviews" />,
                         <NavBarButton
                             key="2"
+                            label="Articles"
+                            onClick={() => router.push("/articles")}
+                        />,
+                        <NavBarButton
+                            key="3"
                             label="Graph Tool"
                             onClick={() => window.open("https://disyaboiralph.github.io/graph", "_blank")}
                         />,
-                        <NavBarButton key="3" label="Test Visx" onClick={() => router.push("/test")} />,
-                        <NavBarButton key="4" label="About" onClick={() => router.push("/about")} />,
+                        <NavBarButton key="4" label="Test Visx" onClick={() => router.push("/test")} />,
+                        <NavBarButton key="5" label="About" onClick={() => router.push("/about")} />,
                     ]}
                     iconButtons={[<IconButton key="search" icon="search" variant="text" />]}
                     ctaButtons={[
