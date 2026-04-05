@@ -20,6 +20,9 @@ export interface LkButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElem
     opticIconShift?: boolean;
     modifiers?: string;
     stateLayerOverride?: LkStateLayerProps; // Optional override for state layer properties
+    href?: string;
+    target?: React.HTMLAttributeAnchorTarget;
+    rel?: string;
 }
 
 /**
@@ -60,6 +63,9 @@ export default function Button({
     opticIconShift = true,
     modifiers,
     stateLayerOverride,
+    href,
+    target,
+    rel,
     ...restProps
 }: LkButtonProps) {
     const lkButtonAttrs = useMemo(
@@ -102,14 +108,8 @@ export default function Button({
 
     const localStateLayerProps: LkStateLayerProps = getLocalStateLayerProps();
 
-    return (
-        <button
-            {...lkButtonAttrs}
-            {...restProps}
-            type="button"
-            data-lk-component="button"
-            className={`${baseButtonClasses} ${modifiers || ""}`}
-        >
+    const buttonContent = (
+        <>
             <div data-lk-button-content-wrap="true">
                 {startIcon && (
                     <div data-lk-icon-position="start">
@@ -132,6 +132,34 @@ export default function Button({
                 )}
             </div>
             <StateLayer {...localStateLayerProps} />
+        </>
+    );
+
+    if (href) {
+        return (
+            <a
+                {...lkButtonAttrs}
+                {...(restProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+                href={href}
+                target={target}
+                rel={rel}
+                data-lk-component="button"
+                className={`${baseButtonClasses} ${modifiers || ""}`}
+            >
+                {buttonContent}
+            </a>
+        );
+    }
+
+    return (
+        <button
+            {...lkButtonAttrs}
+            {...restProps}
+            type="button"
+            data-lk-component="button"
+            className={`${baseButtonClasses} ${modifiers || ""}`}
+        >
+            {buttonContent}
         </button>
     );
 }
