@@ -105,12 +105,22 @@ describe("Header Component", () => {
         render(<Header />);
 
         const navButtons = screen.getAllByTestId("nav-bar-button");
-        expect(navButtons).toHaveLength(4);
+        expect(navButtons).toHaveLength(5);
 
         expect(screen.getByText("Reviews")).toBeInTheDocument();
+        expect(screen.getByText("Articles")).toBeInTheDocument();
         expect(screen.getByText("Graph Tool")).toBeInTheDocument();
         expect(screen.getByText("Test Visx")).toBeInTheDocument();
         expect(screen.getByText("About")).toBeInTheDocument();
+    });
+
+    it("places Articles immediately to the right of Reviews", () => {
+        render(<Header />);
+
+        const navButtons = screen.getAllByTestId("nav-bar-button");
+        const labels = navButtons.map((button) => button.getAttribute("data-label"));
+
+        expect(labels.slice(0, 2)).toEqual(["Reviews", "Articles"]);
     });
 
     it("renders icon buttons", () => {
@@ -141,6 +151,15 @@ describe("Header Component", () => {
         await userEvent.click(aboutButton);
 
         expect(mockPush).toHaveBeenCalledWith("/about");
+    });
+
+    it("handles Articles button click navigation", async () => {
+        render(<Header />);
+
+        const articlesButton = screen.getByText("Articles");
+        await userEvent.click(articlesButton);
+
+        expect(mockPush).toHaveBeenCalledWith("/articles");
     });
 
     it("handles Graph Tool button click to open external link", async () => {
